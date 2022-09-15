@@ -30,7 +30,7 @@ const Link = ({ children, to, activeClassName, partiallyActive, ...rest }) => {
     )
   }
   return (
-    <StyledLink href={to} rel="noopener noreferrer" {...rest}>
+    <StyledLink href={to} rel="noopener noreferrer" target="_blank" {...rest}>
       {children}
     </StyledLink>
   )

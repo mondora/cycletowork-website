@@ -2,6 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 
+import styled from "styled-components"
+
 import Markdown from "../../components/markdown"
 
 export const pageQuery = graphql`
@@ -18,13 +20,23 @@ export const pageQuery = graphql`
   }
 `
 
+const Container = styled.div`
+  width: 100%;
+  font-family: "Lato";
+  font-style: normal;
+  box-sizing: border-box;
+  max-width: 768px;
+  margin: auto;
+  padding: 10px;
+`
+
 const SimplePage = ({ data: { contentfulSimplePage } }) => {
   return (
-    <>
+    <Container>
       <Markdown
         data={contentfulSimplePage.content.childMarkdownRemark.htmlAst}
       />
-    </>
+    </Container>
   )
 }
 

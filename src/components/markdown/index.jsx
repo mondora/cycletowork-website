@@ -54,29 +54,47 @@ const ListElement = styled.li`
   color: var(--text-gray);
 `
 
+const Underline = styled.span`
+  text-decoration: underline;
+`
+
 const BlockQuote = styled.blockquote`
-  font-size: calc(1.4em + 0.15vw);
+  border: 1px solid rgb(32, 39, 47);
+  padding: 20px 20px 0 20px;
+  font-size: calc(1em + 0.15vw);
   font-family: "Playfair Display", serif;
   font-weight: 400;
 `
 
 const Table = styled.table`
   font-size: calc(1em + 0.15vw);
-  width: 100%;
   margin: 0 0 2em;
-  border-spacing: 0;
-
+  border-collapse: collapse;
+  overflow-x: auto;
   th {
     padding: 1em;
     text-align: left;
-    border-bottom: 1px solid var(--background-dark-gray);
+    border: 1px solid rgb(32, 39, 47);
   }
 
   td {
     padding: 1em;
-    border-bottom: 1px solid var(--text-light-gray);
+    white-space: nowrap;
+    border: 1px solid rgb(32, 39, 47);
   }
 `
+const Wrapper = styled.div`
+  width: 100%;
+  overflow-x: auto;
+`
+
+const Wrapped = ({ children }) => {
+  return (
+    <Wrapper>
+      <Table>{children}</Table>
+    </Wrapper>
+  )
+}
 
 const renderAst = new rehypeReact({
   createElement: React.createElement,
@@ -89,7 +107,8 @@ const renderAst = new rehypeReact({
     a: Link,
     li: ListElement,
     blockquote: BlockQuote,
-    table: Table,
+    del: Underline,
+    table: Wrapped,
   },
 }).Compiler
 
