@@ -2,17 +2,30 @@ import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 
+import Markdown from "../../components/markdown"
+
 export const pageQuery = graphql`
   query ($slug: String!) {
     contentfulSimplePage(slug: { eq: $slug }) {
       node_locale
       pageName
+      content {
+        childMarkdownRemark {
+          htmlAst
+        }
+      }
     }
   }
 `
 
 const SimplePage = ({ data: { contentfulSimplePage } }) => {
-  return <h1>{contentfulSimplePage.pageName}</h1>
+  return (
+    <>
+      <Markdown
+        data={contentfulSimplePage.content.childMarkdownRemark.htmlAst}
+      />
+    </>
+  )
 }
 
 SimplePage.propTypes = {

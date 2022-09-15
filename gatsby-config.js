@@ -38,5 +38,40 @@ module.exports = {
         icon: "src/images/logo-square.png",
       },
     },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        footnotes: true,
+        gfm: true,
+        plugins: [
+          {
+            resolve: "gatsby-remark-embed-video",
+            options: {
+              width: 1136,
+              ratio: 1.77,
+              related: false,
+              noIframeBorder: true,
+              urlOverrides: [
+                {
+                  id: "youtube",
+                  embedURL: (videoId) =>
+                    `https://www.youtube-nocookie.com/embed/${videoId}`,
+                },
+              ],
+              containerClass: "embedVideo-container",
+            },
+          },
+          {
+            resolve: "gatsby-remark-images-contentful",
+            options: {
+              maxWidth: 1136,
+              linkImagesToOriginal: false,
+              withWebp: true,
+            },
+          },
+          "gatsby-remark-responsive-iframe",
+        ],
+      },
+    },
   ],
 }
