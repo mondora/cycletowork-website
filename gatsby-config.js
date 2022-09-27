@@ -27,6 +27,10 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-vanilla-extract",
     {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {},
+    },
+    {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: "Gatsby Starter Contentful Homepage",
