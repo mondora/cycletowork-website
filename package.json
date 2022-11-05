@@ -19,6 +19,7 @@
     "@vanilla-extract/css": "^1.9.0",
     "@vanilla-extract/css-utils": "^0.1.2",
     "@vanilla-extract/webpack-plugin": "^2.1.12",
+    "feather-icons": "^4.29.0",
     "gatsby": "^4.22.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-image": "^2.22.0",
@@ -39,8 +40,10 @@
     "react-dom": "^17.0.2",
     "react-feather": "^2.0.9",
     "react-helmet": "^6.1.0",
+    "react-slick": "^0.29.0",
     "rehype-react": "^7.1.1",
     "sharp": "^0.30.5",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {

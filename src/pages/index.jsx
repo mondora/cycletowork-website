@@ -6,8 +6,43 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 
 import Markdown from "../components/markdown"
+import Footer from "../components/footer"
+import Carousel from "../components/carousel"
 
-const AppWrapper = styled.div``
+const ContentWrapper = styled.div`
+  width: 80%;
+  max-width: 800px;
+  margin: 48px auto 120px auto;
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+`
+
+const AppWrapper = styled.div`
+  width: fit-content;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+`
+
+const AppLogo = styled(GatsbyImage)`
+  border-radius: 16px;
+  margin: 16px auto;
+`
+const AppTitle = styled.h1`
+  margin: 8px 0;
+`
+
+const AppLink = styled.a`
+  color: #01875f;
+  text-decoration: none;
+`
 
 const Homepage = () => {
   const { contentfulHomePage } = useStaticQuery(graphql`
@@ -21,7 +56,7 @@ const Homepage = () => {
         }
         appLogo {
           title
-          gatsbyImageData(width: 200, placeholder: BLURRED)
+          gatsbyImageData(width: 80, placeholder: BLURRED)
         }
         screenshots {
           id
@@ -50,26 +85,30 @@ const Homepage = () => {
     }
   `)
   return (
-    <>
+    <ContentWrapper>
       <AppWrapper>
-        <div>{contentfulHomePage.appName}</div>
-        <a href={contentfulHomePage.appDeveloper.url}>
-          {contentfulHomePage.appDeveloper.text}
-        </a>
-        <GatsbyImage
+        <AppLogo
           height={20}
           image={contentfulHomePage.appLogo.gatsbyImageData}
           alt={contentfulHomePage.appLogo.title}
         />
+        <div>
+          <AppTitle>{contentfulHomePage.appName}</AppTitle>
+          <AppLink target={"_blank"} href={contentfulHomePage.appDeveloper.url}>
+            {contentfulHomePage.appDeveloper.text}
+          </AppLink>
+        </div>
       </AppWrapper>
-      {contentfulHomePage.screenshots.map((image) => (
-        <GatsbyImage
-          key={image.id}
-          height={20}
-          image={image.gatsbyImageData}
-          alt={image.title}
-        />
-      ))}
+      <Carousel>
+        {contentfulHomePage.screenshots.map((image) => (
+          <GatsbyImage
+            key={image.id}
+            height={20}
+            image={image.gatsbyImageData}
+            alt={image.title}
+          />
+        ))}
+      </Carousel>
       <Markdown
         data={contentfulHomePage.description.childMarkdownRemark.htmlAst}
       />
@@ -79,8 +118,8 @@ const Homepage = () => {
       <Link to={contentfulHomePage.rulesLink.url}>
         {contentfulHomePage.rulesLink.text}
       </Link>
-      <Markdown data={contentfulHomePage.footer.childMarkdownRemark.htmlAst} />
-    </>
+      <Footer data={contentfulHomePage.footer.childMarkdownRemark.htmlAst} />
+    </ContentWrapper>
   )
 }
 

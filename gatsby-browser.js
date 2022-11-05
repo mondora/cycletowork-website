@@ -1,3 +1,5 @@
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 import "@fontsource/dm-sans"
 import "@fontsource/dm-sans/500.css"
 import "@fontsource/dm-sans/700.css"
