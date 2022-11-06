@@ -13,6 +13,7 @@ const ContentWrapper = styled.div`
   width: 80%;
   max-width: 800px;
   margin: 48px auto 120px auto;
+  font-family: Arial, Helvetica, sans-serif;
   @media (max-width: 640px) {
     width: 100%;
   }
